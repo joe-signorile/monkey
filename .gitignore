@@ -1,0 +1,31 @@
+# Android / Gradle
+local.properties
+.gradle/
+build/
+*.apk
+*.aab
+captures/
+.cxx/
+
+# IDE
+.idea/
+*.iml
+.kotlin/
+
+# OS
+.DS_Store
+
+# Terraform
+# Lambda deps are vendored (not runtime-guaranteed) but not committed — run `npm install`
+# in each infra/modules/api/lambda/<route>/ dir before `terraform apply`.
+**/lambda/*/node_modules/
+**/lambda/*.zip
+**/.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+crash.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json

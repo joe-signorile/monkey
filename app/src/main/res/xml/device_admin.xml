@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Required by the platform for any DeviceAdminReceiver, even though this app
+  only ever reaches admin status via `dpm set-device-owner`, which skips the
+  interactive activation screen this descriptor would otherwise back.
+  No policies are declared here; everything this app actually uses
+  (setLockTaskPackages, setLockTaskFeatures, user restrictions) comes from
+  Device Owner status itself, not from <uses-policy> grants.
+-->
+<device-admin xmlns:android="http://schemas.android.com/apk/res/android" />
+

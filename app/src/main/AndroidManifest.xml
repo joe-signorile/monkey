@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--
+      REQUIRED. Without this, API 30+ package-visibility filtering makes
+      queryIntentActivities() return a near-empty list and the grid comes up
+      blank with no error. See docs/agents.md "Manifest invariants".
+    -->
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent>
+    </queries>
+
+    <!-- Normal permission, no runtime grant. Lets onResume() nudge Android to
+         reclaim a launched app's process once the grid regains focus. -->
+    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
+
+    <!-- Special permission, not auto-granted: Settings.canDrawOverlays() must
+         return true before PinGate can show anything. Grant via Settings or
+         `adb shell appops set os.monkey.shell SYSTEM_ALERT_WINDOW allow`. -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
+    <application
+        android:allowBackup="false"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.MonkeyShell">
+
+        <activity
+            android:name=".ShellActivity"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden|density|smallestScreenSize|uiMode"
+            android:excludeFromRecents="true"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:stateNotNeeded="true"
+            android:theme="@style/Theme.MonkeyShell">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.HOME" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!--
+          Anchor for Device Owner status. `adb shell dpm set-device-owner`
+          targets this component directly; the interactive activation prompt
+          this <meta-data> descriptor would normally back is never shown.
+          See docs/agents.md for the provisioning procedure.
+        -->
+        <receiver
+            android:name=".KioskAdminReceiver"
+            android:exported="true"
+            android:permission="android.permission.BIND_DEVICE_ADMIN">
+            <meta-data
+                android:name="android.app.device_admin"
+                android:resource="@xml/device_admin" />
+            <intent-filter>
+                <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
+            </intent-filter>
+        </receiver>
+    </application>
+</manifest>

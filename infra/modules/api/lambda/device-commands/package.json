@@ -1,0 +1,9 @@
+{
+  "name": "device-commands",
+  "private": true,
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.400.0",
+    "@aws-sdk/lib-dynamodb": "^3.400.0",
+    "@aws-sdk/client-iot-data-plane": "^3.400.0"
+  }
+}
