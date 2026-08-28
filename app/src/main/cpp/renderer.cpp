@@ -338,7 +338,7 @@ void Renderer::uploadPending() {
 
         const int slot = iconSlots_.alloc();
         if (slot == -1) {
-            // monkey-boy: fixed atlas capacity (kAtlasCapacity icons) —
+            // claudia: fixed atlas capacity (kAtlasCapacity icons) —
             // upgrade to a growable atlas if a real device's app count ever
             // exceeds it. The tile still lays out and hit-tests correctly;
             // it just draws no icon until a slot frees up.

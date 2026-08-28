@@ -16,7 +16,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import java.security.MessageDigest
 
-// monkey-boy: no in-app way to change the PIN once set (clear app data to
+// claudia: no in-app way to change the PIN once set (clear app data to
 // reset it) — upgrade if a parent-settings surface gets built for other
 // reasons; not worth a screen on its own.
 

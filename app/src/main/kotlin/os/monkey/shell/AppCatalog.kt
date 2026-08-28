@@ -36,7 +36,7 @@ object AppCatalog {
     // DeviceOwner.applyLockdown's lock-task allow-list, which this package
     // is never part of; this filter is UX hygiene so a blocked package
     // doesn't sit in the grid as a tile that silently refuses to launch.
-    // monkey-boy: hardcoded AOSP package name — confirm it matches on Fire
+    // claudia: hardcoded AOSP package name — confirm it matches on Fire
     // OS during hardware verification (see docs/agents.md); add the actual
     // package there if it differs.
     private val HIDDEN_PACKAGES = setOf("com.android.settings")
